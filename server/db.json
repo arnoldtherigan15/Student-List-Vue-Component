@@ -1,0 +1,54 @@
+{
+    "phases": [
+        {
+            "id": 1,
+            "student": "Kevin",
+            "category": "Phase 0"
+        },
+        {
+            "id": 2,
+            "student": "Nicko",
+            "category": "Phase 0"
+        },
+        {
+            "id": 3,
+            "student": "Kisra",
+            "category": "Phase 1"
+        },
+        {
+            "id": 4,
+            "student": "Roy",
+            "category": "Phase 1"
+        },
+        {
+            "id": 5,
+            "student": "Sakra",
+            "category": "Phase 2"
+        },
+        {
+            "id": 6,
+            "student": "Theo",
+            "category": "Phase 2"
+        },
+        {
+            "id": 7,
+            "student": "Alfonso",
+            "category": "Phase 3"
+        },
+        {
+            "id": 8,
+            "student": "Angga",
+            "category": "Phase 3"
+        },
+        {
+            "id": 9,
+            "student": "Eldwin",
+            "category": "Phase 0"
+        },
+        {
+            "id": 10,
+            "student": "Handana",
+            "category": "Phase 1"
+        }
+    ]
+}

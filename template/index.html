@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://mustopa28121992.github.io/projectt/img/fox--md5--a9e377ae39495073d0e66db163fc8d9b.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+    <title>Hacktiv8</title>
+</head>
+<body>
+    <section id="main">
+        <div class="btn-corner">
+            <i onclick="openModalAdd()" class="far fa-plus-square"></i>
+        </div>
+        <!-- MODAL ADD -->
+        <div class="modal" id="modal-add">
+            <div class="modal-container">
+                <div class="modal-head">
+                    <h3>Add New Student</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-input">
+                        <label for="name">
+                            <i class="fas fa-user-graduate"></i>
+                            Name 
+                        </label>
+                        <input type="text">
+                    </div>
+                    <div class="modal-dropdown">
+                        <label for="cars">
+                            <i class="fas fa-layer-group"></i>
+                            Choose a phase:
+                        </label>
+                        <select name="phase" id="phase">
+                            <option value="Phase 0">🍊 Phase 0</option>
+                            <option value="Phase 1">🍎 Phase 1</option>
+                            <option value="Phase 2">🍇 Phase 2</option>
+                            <option value="Phase 3">🥑 Phase 3</option>
+                        </select>
+                    </div>
+                    <div class="modal-button">
+                        <button>Add</button>
+                        <button onclick="closeModalAdd()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL EDIT -->
+        
+        <div class="modal" id="modal-edit">
+            <div class="modal-container">
+                <div class="modal-head">
+                    <h3>Edit Student Data</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-input">
+                        <label for="name">
+                            <i class="fas fa-user-graduate"></i>
+                            Name 
+                        </label>
+                        <input type="text">
+                    </div>
+                    <div class="modal-dropdown">
+                        <label for="cars">
+                            <i class="fas fa-layer-group"></i>
+                            Choose a phase:
+                        </label>
+                        <select name="phase" id="phase">
+                            <option value="Phase 0">🍊 Phase 0</option>
+                            <option value="Phase 1">🍎 Phase 1</option>
+                            <option value="Phase 2">🍇 Phase 2</option>
+                            <option value="Phase 3">🥑 Phase 3</option>
+                        </select>
+                    </div>
+                    <div class="modal-button">
+                        <button>Save</button>
+                        <button onclick="closeModalEdit()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTAINER -->
+        <div class="container">
+            <h1 style="text-align: center; margin: 2em 0;">Hacktiv8 Students</h1>
+            <div class="container-category">
+                <div class="category">
+                    <div class="category-head">
+                        <h3>Phase 0</h3>
+                        <h3>🍊</h3>
+                    </div>
+                    <div class="category-body">
+                        <div class="card card-yellow">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/arnoldd.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Arnold</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                        <div class="card card-yellow">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/seven.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Seven</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                        <div class="card card-yellow">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/iam.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Iam</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                        <div class="card card-yellow">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/stef.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Stef</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                        <div class="card card-yellow">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/nadia.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Nadia</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                        <div class="card card-yellow">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/isro.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Isro</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <div class="category-head">
+                        <h3>Phase 1</h3>
+                        <h3>🍎</h3>
+                    </div>
+                    <div class="category-body">
+                        <div class="card card-red">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/arnold%20therigan.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Arnold Therigan</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <div class="category-head">
+                        <h3>Phase 2</h3>
+                        <h3>🍇</h3>
+                    </div>
+                    <div class="category-body">
+                        <div class="card card-purple">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/arnold%20therigan.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Arnold Therigan</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <div class="category-head">
+                        <h3>Phase 3</h3>
+                        <h3>🥑</h3>
+                    </div>
+                    <div class="category-body">
+                        <div class="card card-green">
+                            <div class="card-img">
+                                <img src="https://avatars.dicebear.com/api/human/arnold%20therigan.svg" alt="avatar">
+                            </div>
+                            <div class="card-body">
+                                <p>Arnold Therigan</p>
+                            </div>
+                            <div class="card-button">
+                                <i onclick="openModalEdit()" class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function openModalAdd() {
+            document.getElementById('modal-add').style.visibility = "visible"
+        }
+        function closeModalAdd() {
+            document.getElementById('modal-add').style.visibility = "hidden"
+        }
+
+        function openModalEdit() {
+            document.getElementById('modal-edit').style.visibility = "visible"
+        }
+        function closeModalEdit() {
+            document.getElementById('modal-edit').style.visibility = "hidden"
+        }
+    </script>
+</body>
+</html>
