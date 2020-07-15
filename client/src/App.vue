@@ -1,16 +1,16 @@
 <template>
   <div>
-      <h1>Welcome {{ msg }}</h1>
+      <Main></Main>
   </div>
 </template>
 
 <script>
+import Main from './pages/Main'
+import axios from 'axios'
 export default {
     name: 'App',
-    data() {
-        return {
-            msg: 'Hacktiv8'
-        }
+    components: {
+        Main
     }
 }
 </script>
