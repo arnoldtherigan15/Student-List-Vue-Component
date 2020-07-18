@@ -4,7 +4,7 @@
             <div class="addForm-head">
                 <h3>Edit Student Data</h3>
             </div>
-            <form @submit.prevent="editStudent" class="addForm-body">
+            <form @submit.prevent="editMethod" class="addForm-body">
                 <div class="addForm-input">
                     <label for="name">
                         <i class="fas fa-user-graduate"></i>
@@ -35,26 +35,24 @@
 
 <script>
 export default {
+    name: 'EditForm',
     props: [ 'studentDetail' ],
     data() {
         return {
-            name: '',
-            selected: ''
+            selected: this.studentDetail.category,
+            name: this.studentDetail.name
         }
     },
     methods: {
-        editStudent() {
+        editMethod() {
             let payload = {
                 id: this.studentDetail.id,
                 name: this.name,
-                category: this.selected
+                category: Number(this.selected)
+
             }
-            this.$emit('editStudent', payload)
+            this.$emit('editMethod', payload)
         }
-    },
-    created() {
-        this.selected = this.studentDetail.category
-        this.name = this.studentDetail.name
     }
 }
 </script>

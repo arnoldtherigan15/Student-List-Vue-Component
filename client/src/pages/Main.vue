@@ -1,135 +1,143 @@
 <template>
-  <section id="main">
-        <div class="btn-corner" v-if="pageName == 'home'">
-            <i @click="changePage({name: 'addFormPage'})" class="far fa-plus-square"></i>
+    <section id="main">
+        <div class="btn-corner">
+            <i @click="changePage('addForm')" class="far fa-plus-square"></i>
         </div>
-        <h1 @click="changePage({name: 'home'})" style="text-align: center; margin: 2em 0; cursor:pointer">Hacktiv8 Students</h1>
-        <div class="container" v-if="pageName == 'home'">
-            <div class="container-category">
+        <!-- MAIN CONTAINER -->
+        <div class="container">
+            <h1 @click="changePage('home')" style="text-align: center; margin: 2em 0; cursor:pointer;">Hacktiv8 Students</h1>
+            <div v-if="pageName == 'home'" class="container-category">
                 <Category 
-                  v-for="phase in phases" 
-                  :key="phase.category" 
-                  :phase="phase" 
-                  :students="students" 
-                  @changePage="changePage"
-                  @deleteStudent="deleteStudent">
+                    v-for="phase in phases" 
+                    :key="phase.category" 
+                    :phaseData="phase" 
+                    :studentData="students"
+                    @deleteStudentData="deleteStudent"
+                    @editFormButton="editPage"
+                    >
                 </Category>
             </div>
+            <AddForm v-else-if="pageName == 'addForm'" @addNewStudent="addStudent"></AddForm>
+            <EditForm 
+                v-else-if="pageName == 'editForm'" 
+                :studentDetail="studentDetail"
+                @editMethod="editData">
+            </EditForm>
         </div>
-        <AddForm v-else-if="pageName == 'addFormPage'" @addStudents="addStudents"></AddForm>
-        <EditForm v-else-if="pageName == 'eidtFormPage'" :studentDetail="studentDetail" @editStudent="editStudent"></EditForm>
     </section>
 </template>
 
 <script>
 import Category from '../components/Category'
 import AddForm from '../components/AddForm'
-import EditForm from '../components/EditForm'
-import axios from 'axios'
+import EditForm from '../components/EditFrom'
+import axios from '../config/axios'
 export default {
-  components: {
-    Category, AddForm, EditForm
-  },
-  data() {
-    return {
-      pageName: 'home',
-      students: [],
-      studentDetail: {},
-      phases: [ 
-          {
-              category: 0,
-              icon: '🍊',
-              class: 'card-yellow'
-          },
-          {
-              category: 1,
-              icon: '🍎',
-              class: 'card-red'
-          },
-          {
-              category: 2,
-              icon: '🍇',
-              class: 'card-purple'
-          },
-          {
-              category: 3,
-              icon: '🥑',
-              class: 'card-green'
-          }
-      ]
-    }
-  },
-  methods: {
-    changePage(payload) {
-      if(payload.student) {
-        this.studentDetail = payload.student
-      }
-      this.pageName = payload.name
-    },
-    fetchStudents() {
-      axios({
-          url: 'http://localhost:3000/students',
-          method: 'get'
-      })
-        .then(({data}) => {
-            this.students = data
-        })
-        .catch(err => {
-            console.log(err, '>>>>>>>>>> error')
-        })
-    },
-    addStudents(payload) {
-      axios({
-        url: 'http://localhost:3000/students',
-        method: 'post',
-        data: {
-          name: payload.name,
-          category: Number(payload.category)
+    name: 'Main',
+    data() {
+        return {
+            pageName: 'home',
+            phases: [
+                {
+                    category: 0,
+                    icon: '🍊',
+                    class: 'card-yellow'
+                },
+                {
+                    category: 1,
+                    icon: '🍎',
+                    class: 'card-red'
+                },
+                {
+                    category: 2,
+                    icon: '🍇',
+                    class: 'card-purple'
+                },
+                {
+                    category: 3,
+                    icon: '🥑',
+                    class: 'card-green'
+                }
+            ],
+            students: [],
+            studentDetail: {}
         }
-      })
-        .then(({data}) => {
-          this.students.push(data)
-          this.changePage({ name: 'home' })
-        })
-        .catch(err => {
-            console.log(err, '>>>>>>>>>> error')
-        })
     },
-    editStudent(payload) {
-      axios({
-        url: `http://localhost:3000/students/${payload.id}`,
-        method: 'put',
-        data: {
-          name: payload.name,
-          category: Number(payload.category)
+    methods: {
+        changePage(name) {
+            this.pageName = name
+        },
+        editPage(payload) {
+            this.pageName = payload.pageName
+            this.studentDetail = payload.data
+        },
+        editData(payload) {
+            axios({
+                method: 'put',
+                url: `/students/${payload.id}`,
+                data: {
+                    category: payload.category,
+                    name: payload.name
+                }
+            })
+                .then(({ data }) => {
+                    let index = this.students.findIndex(el => el.id == payload.id)
+                    this.students.splice(index, 1, data)
+                    this.changePage('home')
+                })
+                .catch(err => {
+                    console.log(err, '<<<<<<<<<<<<<< error')
+                })
+        },
+        deleteStudent(payload) {
+            axios({
+                method: 'delete',
+                url: `/students/${payload.id}`,
+            })
+                .then(_=> {
+                    let index = this.students.findIndex(el => el.id == payload.id)
+                    this.students.splice(index, 1)
+                })
+                .catch(err => {
+                    console.log(err, '<<<<<<<<<<<<<< error')
+                })
+        },
+        addStudent(payload) {
+            axios({
+                method: 'post',
+                url: '/students',
+                data: {
+                    name: payload.name,
+                    category: payload.category
+                }
+            })
+                .then(({ data }) => {
+                    this.students.push(data)
+                    this.changePage('home')
+                })
+                .catch(err => {
+                    console.log(err, '<<<<<<<<<<<<<< error')
+                })
+        },
+        fetchStudents() {
+            axios({
+                method: 'get',
+                url: `/students`
+            })
+                .then(({ data }) => {
+                    this.students = data
+                })
+                .catch(err => {
+                    console.log(err, '<<<<<<<<<<<<<< error')
+                })
         }
-      })
-        .then(({data}) => {
-          let index = this.students.findIndex(el => el.id == data.id)
-          this.students.splice(index, 1, data)
-          this.changePage({ name: 'home' })
-        })
-        .catch(err => {
-            console.log(err, '>>>>>>>>>> error')
-        })
     },
-    deleteStudent(id) {
-      axios({
-        url: `http://localhost:3000/students/${id}`,
-        method: 'delete'
-      })
-        .then(_ => {
-          let index = this.students.findIndex(el => el.id == id)
-          this.students.splice(index, 1)
-        })
-        .catch(err => {
-            console.log(err, '>>>>>>>>>> error')
-        })
+    created() {
+        this.fetchStudents()
+    },
+    components: {
+        Category, AddForm, EditForm
     }
-  },
-  created() {
-    this.fetchStudents()
-  }
 }
 </script>
 

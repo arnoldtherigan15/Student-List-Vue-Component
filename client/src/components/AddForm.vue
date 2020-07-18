@@ -4,7 +4,7 @@
             <div class="addForm-head">
                 <h3>Add New Student</h3>
             </div>
-            <form @submit.prevent="addStudents" class="addForm-body">
+            <form @submit.prevent="addStudent" class="addForm-body">
                 <div class="addForm-input">
                     <label for="name">
                         <i class="fas fa-user-graduate"></i>
@@ -35,7 +35,7 @@
 
 <script>
 export default {
-    props: [ 'modalName' ],
+    name: 'AddForm',
     data() {
         return {
             selected: '',
@@ -43,12 +43,14 @@ export default {
         }
     },
     methods: {
-        addStudents() {
+        addStudent() {
             let payload = {
                 name: this.name,
-                category: this.selected
+                category: Number(this.selected)
             }
-            this.$emit('addStudents', payload)
+            this.$emit('addNewStudent', payload)
+            this.selected = ''
+            this.name = ''
         }
     }
 }

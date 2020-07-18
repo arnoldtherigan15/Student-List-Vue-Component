@@ -1,34 +1,34 @@
 {
   "students": [
     {
-      "id": 1,
+      "category": 2,
       "name": "Kevin",
-      "category": 0
+      "id": 1
     },
     {
-      "id": 2,
+      "category": 3,
       "name": "Nicko",
-      "category": 0
+      "id": 2
     },
     {
-      "id": 3,
+      "category": 0,
       "name": "Kisra",
-      "category": 1
+      "id": 3
     },
     {
-      "id": 4,
+      "category": 3,
       "name": "Roy",
-      "category": 1
+      "id": 4
     },
     {
-      "id": 5,
+      "category": 1,
       "name": "Sakra",
-      "category": 2
+      "id": 5
     },
     {
-      "id": 6,
+      "category": 1,
       "name": "Theo",
-      "category": 2
+      "id": 6
     },
     {
       "id": 7,
@@ -41,14 +41,14 @@
       "category": 3
     },
     {
-      "id": 9,
+      "category": 3,
       "name": "Eldwin",
-      "category": 0
+      "id": 9
     },
     {
-      "id": 10,
+      "category": 3,
       "name": "Handana",
-      "category": 1
+      "id": 10
     }
   ]
 }

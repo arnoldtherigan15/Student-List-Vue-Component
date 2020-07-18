@@ -1,17 +1,17 @@
 <template>
     <div class="category">
         <div class="category-head">
-            <h3>Phase {{ phase.category }}</h3>
-            <h3>{{ phase.icon }}</h3>
+            <h3>Phase {{ phaseData.category }}</h3>
+            <h3>{{ phaseData.icon }}</h3>
         </div>
         <div class="category-body">
             <StudentCard 
                 v-for="student in studentPerPhase" 
                 :key="student.id" 
-                :student="student" 
-                :phase="phase" 
-                @changePage="changePage"
-                @deleteStudent="deleteStudent">
+                :studentDetail="student"
+                :phase="phaseData"
+                @deleteStudentCard="deleteStudent"
+                @editFormButtonFromCard="editFormButton">
             </StudentCard>
         </div>
     </div>
@@ -20,27 +20,27 @@
 <script>
 import StudentCard from './StudentCard'
 export default {
+    props: [ 'phaseData', 'studentData' ],
     components: {
         StudentCard
     },
-    props: [ 'phase', 'students' ],
+    methods: {
+        deleteStudent(payload) {
+            this.$emit('deleteStudentData', payload)
+        },
+        editFormButton(payload) {
+            this.$emit('editFormButton', payload)
+        }
+    },
     computed: {
         studentPerPhase() {
             let result = []
-            this.students.forEach(student => {
-                if(student.category == this.phase.category) {
+            this.studentData.forEach(student => {
+                if(student.category == this.phaseData.category) {
                     result.push(student)
                 }
             })
             return result
-        }
-    },
-    methods: {
-        changePage(name) {
-            this.$emit('changePage', name)
-        },
-        deleteStudent(id) {
-            this.$emit('deleteStudent', id)
         }
     }
 }
